@@ -21,12 +21,26 @@ async def main():
     )
 
     try:
-        # Run a query that uses tools from multiple servers
-        result = await agent.run(
-            "Search for a nice place to stay in Barcelona on Airbnb, "
-            "then use Google to find nearby restaurants and attractions."
-        )
-        print(result)
+        # create a question answer sytem eith user 
+        # and system prompts
+        print("===================== Welcome to the MCP ai assistnat Agent! =====================")
+        while True:
+            user_input = input("You : ")
+            if user_input.lower() == "exit":
+                break
+            # Run a query that uses tools from multiple servers
+            if user_input:
+                result = await agent.run(user_input)
+                print(result)
+            else:
+                print("Please enter a valid input.")
+        # user_input = input("You : ")
+        # # Run a query that uses tools from multiple servers
+        # result = await agent.run(
+        #     "Search for a nice place to stay in Barcelona on Airbnb, "
+        #     "then use Google to find nearby restaurants and attractions."
+        # )
+        # print(result)
     finally:
         # Clean up all sessions
         await client.close_all_sessions()
